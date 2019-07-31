@@ -1,0 +1,139 @@
+body {
+  	width: 380px;
+}
+
+#wk-popup-close {
+  	cursor: pointer;
+}
+
+#wk-popup-header {
+  	padding: 20px;
+	position: relative;
+	border-bottom: 2px solid #d3d3d3;
+}
+
+#wk-popup-header img {
+	display: inline-block;
+}
+
+#wk-popup-header #wk-header-text {
+	margin-top: 0px;
+    font-size: 16px;
+    color: #000000;
+    display: inline-block;
+    margin-left: 10px;
+    vertical-align: middle;
+    padding-left: 10px;
+	padding-top: 3px;
+    padding-bottom: 3px;
+    border-left: 2px solid #d3d3d3;
+    margin-bottom: 0;
+}
+
+#wk-popup-header .close-icon {
+	position: absolute;
+    right: 20px;
+    top: 24px;
+    cursor: pointer;
+}
+
+#wk-popup-body {
+	max-height: 600px;
+	min-height: 300px;
+    padding: 0 20px;
+}
+
+#wk-option-box {
+	padding: 10px;
+	display: none;
+}
+
+#wk-option-box input[type=checkbox] {
+  	display: none;
+}
+
+#wk-option-box .wk-checkbox {
+	width: 19px;
+	height: 19px;
+	border-radius: 100%;
+	border: 1px solid #dad9d9;
+	vertical-align: -webkit-baseline-middle;
+}
+
+#wk-option-box .active {
+	border: none;
+	background: url('../images/bullet.png');
+	background-size: contain;
+	background-repeat: no-repeat;
+}
+
+#wk-option-box p {
+  	font-size: 16px;
+}
+
+#wk-order-empty {
+	padding: 10px;
+	display: block;
+}
+
+#wk-order-empty #wk-empty-text {
+	font-size: 20px;
+	color: #c3c2c2;
+	margin-top: 15px;
+}
+
+#wk-order-empty img {
+  	background-color: #f3f1f1;
+}
+
+#wk-order-table {
+  	display: none;
+}
+
+#wk-order-table .table-responsive {
+	border: none;
+	padding-top: 15px;
+	max-height: 300px;
+	overflow-y: auto;
+}
+
+#wk-order-table .table > thead > tr > th {
+  	border-bottom: none;
+  	font-size: 14px;
+	color: #4A4A4A;
+}
+
+#wk-order-table .table > tbody > tr > td {
+  	border-top: none;
+	font-size: 14px;
+	color: #000000;
+}
+
+#wk-order-table .table > tbody > tr > td .wk-order-place {
+	padding: 5px 15px;
+	border-radius: 2px;
+	border-color: #0041FF;
+	background-color: #0041FF;
+	color: white;
+	text-decoration: none;
+	cursor: pointer;
+}
+
+#wk-popup-footer {
+	padding: 20px 0;
+	border-top: 2px solid #d3d3d3;
+}
+
+#wk-clear-localstorage {
+  	padding: 8px 20px;
+  	border-radius: 3px;
+  	background: #0041FF;
+	border-radius: 2px;
+  	color: white;
+}
+
+#wk-clear-localstorage:hover, #wk-clear-localstorage:visited, #wk-clear-localstorage:active  {
+  	background-color: #0041FF;
+	border-radius: 2px;
+  	color: white;
+}
