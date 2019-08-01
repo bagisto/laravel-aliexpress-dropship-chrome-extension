@@ -1509,10 +1509,12 @@ window.onload = function() {
       }
 
       if ($("body").find("[itemprop=price]").length > 0) {
-        price = $("body")
+        fetchPriceAliexpress = $("body")
           .find("[itemprop=price]")
           .last()
           .text();
+
+        price = fetchPriceAliexpress.replace(/[^0-9. ]/g, "");
       } else if (
         $("body").find("[itemprop=lowPrice]").length > 0 &&
         $("body").find("[itemprop=highPrice]").length > 0
@@ -1527,6 +1529,8 @@ window.onload = function() {
             .find("[itemprop=highPrice]")
             .last()
             .text();
+
+        price = 0;
       }
 
       image = $("body")
@@ -1576,10 +1580,12 @@ window.onload = function() {
       }
 
       if ($("body").find("[itemprop=price]").length > 0) {
-        price = $("body")
+        fetchPriceAliexpress = $("body")
           .find("[itemprop=price]")
           .last()
           .text();
+
+        price = fetchPriceAliexpress.replace(/[^0-9. ]/g, "");
       } else if (
         $("body").find("[itemprop=lowPrice]").length > 0 &&
         $("body").find("[itemprop=highPrice]").length > 0
@@ -1594,6 +1600,8 @@ window.onload = function() {
             .find("[itemprop=highPrice]")
             .last()
             .text();
+
+        price = 0;
       }
 
       image = $("body")
