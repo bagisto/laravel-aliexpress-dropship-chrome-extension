@@ -676,7 +676,6 @@ window.onload = function() {
 
     var updatedCustomOption = [],
       i = 0;
-
     $.each(customOption, function(index, value) {
       if (value.comb == "") {
         updatedPrice = $("#productPrice").val();
@@ -803,6 +802,10 @@ window.onload = function() {
   };
 
   var addProductGeneral = function() {
+    if (superAttributes.length > 0) {
+      price = 0;
+    }
+
     return new Promise(function(resolve, reject) {
       $.ajax({
         url: url + "dropship/aliexpress/import-product",
@@ -1146,6 +1149,7 @@ window.onload = function() {
         }
 
         if (value.comb == "") {
+          // price
           $("#productPrice").val(price);
         } else {
           price = 0;
@@ -2031,6 +2035,7 @@ window.onload = function() {
           if (response && response.success) {
             showCustomerAddress(response);
           }
+
           localStorage.wk_order_id = 0;
         }
       });
