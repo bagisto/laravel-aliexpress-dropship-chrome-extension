@@ -381,12 +381,14 @@ window.onload = function() {
                           ) {
                             tempText += val3.propertyValueDisplayName + "+";
                           }
+
                           if (
-                            val2.showTypeColor &&
+                            !val2.showTypeColor &&
                             val2.skuPropertyId ==
                               valu.split("#")[0].split(":")[0] &&
                             val3.propertyValueId ==
-                              valu.split("#")[0].split(":")[1]
+                              valu.split("#")[0].split(":")[1] &&
+                            val3.skuPropertyImagePath != undefined
                           ) {
                             tempImg = val3.skuPropertyImagePath;
                           }
@@ -429,14 +431,23 @@ window.onload = function() {
                   };
 
                   if (!tempswatchoptionimg) {
-                    imageForSwatch = 0;
+                    if (val5.skuColorValue) {
+                      imageForSwatch = "color";
+                      aliexpressOptions[ind5] = {
+                        name: val5.skuColorValue,
+                        optionid: val5.propertyValueId,
+                        img: tempswatchoptionimg
+                      };
+                    } else {
+                      imageForSwatch = "text";
+                    }
                   } else {
-                    imageForSwatch = 1;
+                    imageForSwatch = "image";
                   }
 
                   superAttributes[ind4] = {
                     attr_id: val4.skuPropertyId,
-                    swatch_type: imageForSwatch ? "image" : "text",
+                    swatch_type: imageForSwatch,
                     title: val4.skuPropertyName + ":",
                     value: aliexpressOptions
                   };
