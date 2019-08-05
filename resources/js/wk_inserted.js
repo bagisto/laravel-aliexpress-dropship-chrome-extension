@@ -381,12 +381,14 @@ window.onload = function() {
                           ) {
                             tempText += val3.propertyValueDisplayName + "+";
                           }
+
                           if (
-                            val2.showTypeColor &&
+                            !val2.showTypeColor &&
                             val2.skuPropertyId ==
                               valu.split("#")[0].split(":")[0] &&
                             val3.propertyValueId ==
-                              valu.split("#")[0].split(":")[1]
+                              valu.split("#")[0].split(":")[1] &&
+                            val3.skuPropertyImagePath != undefined
                           ) {
                             tempImg = val3.skuPropertyImagePath;
                           }
@@ -429,14 +431,23 @@ window.onload = function() {
                   };
 
                   if (!tempswatchoptionimg) {
-                    imageForSwatch = 0;
+                    if (val5.skuColorValue) {
+                      imageForSwatch = "color";
+                      aliexpressOptions[ind5] = {
+                        name: val5.skuColorValue,
+                        optionid: val5.propertyValueId,
+                        img: tempswatchoptionimg
+                      };
+                    } else {
+                      imageForSwatch = "text";
+                    }
                   } else {
-                    imageForSwatch = 1;
+                    imageForSwatch = "image";
                   }
 
                   superAttributes[ind4] = {
                     attr_id: val4.skuPropertyId,
-                    swatch_type: imageForSwatch ? "image" : "text",
+                    swatch_type: imageForSwatch,
                     title: val4.skuPropertyName + ":",
                     value: aliexpressOptions
                   };
@@ -676,7 +687,6 @@ window.onload = function() {
 
     var updatedCustomOption = [],
       i = 0;
-
     $.each(customOption, function(index, value) {
       if (value.comb == "") {
         updatedPrice = $("#productPrice").val();
@@ -803,6 +813,10 @@ window.onload = function() {
   };
 
   var addProductGeneral = function() {
+    if (superAttributes.length > 0) {
+      price = 0;
+    }
+
     return new Promise(function(resolve, reject) {
       $.ajax({
         url: url + "dropship/aliexpress/import-product",
@@ -1146,6 +1160,7 @@ window.onload = function() {
         }
 
         if (value.comb == "") {
+          // price
           $("#productPrice").val(price);
         } else {
           price = 0;
@@ -1509,10 +1524,12 @@ window.onload = function() {
       }
 
       if ($("body").find("[itemprop=price]").length > 0) {
-        price = $("body")
+        fetchPriceAliexpress = $("body")
           .find("[itemprop=price]")
           .last()
           .text();
+
+        price = fetchPriceAliexpress.replace(/[^0-9. ]/g, "");
       } else if (
         $("body").find("[itemprop=lowPrice]").length > 0 &&
         $("body").find("[itemprop=highPrice]").length > 0
@@ -1527,6 +1544,8 @@ window.onload = function() {
             .find("[itemprop=highPrice]")
             .last()
             .text();
+
+        price = 0;
       }
 
       image = $("body")
@@ -1576,10 +1595,12 @@ window.onload = function() {
       }
 
       if ($("body").find("[itemprop=price]").length > 0) {
-        price = $("body")
+        fetchPriceAliexpress = $("body")
           .find("[itemprop=price]")
           .last()
           .text();
+
+        price = fetchPriceAliexpress.replace(/[^0-9. ]/g, "");
       } else if (
         $("body").find("[itemprop=lowPrice]").length > 0 &&
         $("body").find("[itemprop=highPrice]").length > 0
@@ -1594,6 +1615,8 @@ window.onload = function() {
             .find("[itemprop=highPrice]")
             .last()
             .text();
+
+        price = 0;
       }
 
       image = $("body")
@@ -1762,9 +1785,10 @@ window.onload = function() {
                             ) {
                               if (val2.propertyValueId == parseInt(value)) {
                                 if (
-                                  val1.isShowTypeColor ||
+                                  val1.isShowTypeColor &&
                                   val1.skuPropertyName.toLowerCase() == "color"
                                 ) {
+                                  // this block is for swatch images
                                   if (
                                     !$("body")
                                       .find(
@@ -1783,7 +1807,37 @@ window.onload = function() {
                                       )
                                       .click();
                                   }
+                                } else if (
+                                  val1.isShowTypeColor == false &&
+                                  val1.skuPropertyName.toLowerCase() == "color"
+                                ) {
+                                  // this block is for swatch text as Color
+                                  $.each(
+                                    $("body").find(
+                                      ".product-sku .sku-property-item .sku-property-text span"
+                                    ),
+                                    function(ind3, val3) {
+                                      console.log(val3, val2);
+                                      if (
+                                        $(val3).text() ==
+                                          val2.propertyValueDisplayName ||
+                                        (val2.propertyValueDisplayName ==
+                                          undefined &&
+                                          $(val3).text() ==
+                                            val2.propertyValueName)
+                                      ) {
+                                        if (
+                                          !$(val3)
+                                            .closest(".sku-property-item")
+                                            .hasClass("selected")
+                                        ) {
+                                          $(val3).click();
+                                        }
+                                      }
+                                    }
+                                  );
                                 } else {
+                                  // this block is for swatch as text like ship From
                                   $.each(
                                     $("body").find(
                                       ".product-sku .sku-property-item .sku-property-text span"
@@ -1807,6 +1861,30 @@ window.onload = function() {
                                       }
                                     }
                                   );
+                                }
+
+                                if (
+                                  val1.isShowTypeColor &&
+                                  val1.skuPropertyName.toLowerCase() == "color"
+                                ) {
+                                  if (
+                                    !$("body")
+                                      .find(
+                                        ".product-sku .sku-property-item .sku-property-color span.sku-color-" +
+                                          val2.propertyValueId +
+                                          ""
+                                      )
+                                      .closest(".sku-property-item")
+                                      .hasClass("selected")
+                                  ) {
+                                    $("body")
+                                      .find(
+                                        ".product-sku .sku-property-item .sku-property-color .sku-color-" +
+                                          val2.propertyValueId +
+                                          ""
+                                      )
+                                      .click();
+                                  }
                                 }
                               }
                             });
@@ -2023,6 +2101,7 @@ window.onload = function() {
           if (response && response.success) {
             showCustomerAddress(response);
           }
+
           localStorage.wk_order_id = 0;
         }
       });
