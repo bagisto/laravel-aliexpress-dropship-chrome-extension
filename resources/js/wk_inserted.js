@@ -1834,6 +1834,20 @@ window.onload = function() {
                                           $(val3).click();
                                         }
                                       }
+                                      else if (
+                                        $(val3).attr('title') ==
+                                          val2.propertyValueDefinitionName ||
+                                        (val2.propertyValueDefinitionName ==
+                                          undefined)
+                                      ) {
+                                        if (
+                                          !$(val3)
+                                            .closest(".sku-property-item")
+                                            .hasClass("selected")
+                                        ) {
+                                          $(val3).click();
+                                        }
+                                      }
                                     }
                                   );
                                 } else {
