@@ -2,6 +2,10 @@
 
 #### This changelog consists the bug & security fixes and new features being included in the releases listed below.
 
+## **v1.2.0(3rd of November, 2020)** - _Release_
+
+- [Bug] Added .webp extension in image to serach in aliexpress images
+
 ## **v0.1.1(9th of July, 2019)** - _Release_
 
 - [Compatibility] Compatible with new aliexpress layout.
