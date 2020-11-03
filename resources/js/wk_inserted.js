@@ -1793,7 +1793,7 @@ window.onload = function() {
                                     !$("body")
                                       .find(
                                         '.product-sku .sku-property-item [src="' +
-                                          val2.skuPropertyImageSummPath +
+                                          val2.skuPropertyImageSummPath + '_.webp' +
                                           '"]'
                                       )
                                       .closest(".sku-property-item")
@@ -1802,7 +1802,7 @@ window.onload = function() {
                                     $("body")
                                       .find(
                                         '.product-sku .sku-property-item [src="' +
-                                          val2.skuPropertyImageSummPath +
+                                          val2.skuPropertyImageSummPath + '_.webp' +
                                           '"]'
                                       )
                                       .click();
@@ -1817,7 +1817,6 @@ window.onload = function() {
                                       ".product-sku .sku-property-item .sku-property-text span"
                                     ),
                                     function(ind3, val3) {
-                                      console.log(val3, val2);
                                       if (
                                         $(val3).text() ==
                                           val2.propertyValueDisplayName ||
