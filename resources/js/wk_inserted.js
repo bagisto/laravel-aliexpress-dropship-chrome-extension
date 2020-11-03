@@ -2100,8 +2100,11 @@ window.onload = function() {
       if ($(".address-list-opt button").length) {
         $(".address-list-opt button")[0].click();
       }
+
+      var storeURL = localStorage.wk_url.replace(/.$/,"")
+
       $.ajax({
-        url: localStorage.wk_url + "/dropship/aliexpress/order-details",
+        url: storeURL + "/dropship/aliexpress/order-details",
         data: {
           order_id: localStorage.wk_order_id
         },
