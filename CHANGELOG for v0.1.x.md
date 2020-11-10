@@ -4,7 +4,7 @@
 
 ## **v1.2.0(3rd of November, 2020)** - _Release_
 
-- [Bug] Added .webp extension in image to serach in aliexpress images
+- [Bug] Added .webp extension in image to search in aliexpress images
 
 ## **v0.1.1(9th of July, 2019)** - _Release_
 

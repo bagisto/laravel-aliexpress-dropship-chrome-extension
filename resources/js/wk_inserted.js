@@ -1811,44 +1811,66 @@ window.onload = function() {
                                   val1.isShowTypeColor == false &&
                                   val1.skuPropertyName.toLowerCase() == "color"
                                 ) {
-                                  // this block is for swatch text as Color
-                                  $.each(
-                                    $("body").find(
-                                      ".product-sku .sku-property-item .sku-property-text span"
-                                    ),
-                                    function(ind3, val3) {
-                                      if (
-                                        $(val3).text() ==
-                                          val2.propertyValueDisplayName ||
-                                        (val2.propertyValueDisplayName ==
-                                          undefined &&
+                                  if (val1.skuPropertyValues[ind2]['skuPropertyImageSummPath']) {
+                                       // this block is for swatch images
+                                  if (
+                                    !$("body")
+                                      .find(
+                                        '.product-sku .sku-property-item [src="' +
+                                          val2.skuPropertyImageSummPath + '_.webp' +
+                                          '"]'
+                                      )
+                                      .closest(".sku-property-item")
+                                      .hasClass("selected")
+                                  ) {
+                                    $("body")
+                                      .find(
+                                        '.product-sku .sku-property-item [src="' +
+                                          val2.skuPropertyImageSummPath + '_.webp' +
+                                          '"]'
+                                      )
+                                      .click();
+                                  }
+                                  } else {
+                                      // this block is for swatch text as Color
+                                    $.each(
+                                      $("body").find(
+                                        ".product-sku .sku-property-item .sku-property-text span"
+                                      ),
+                                      function(ind3, val3) {
+                                        if (
                                           $(val3).text() ==
-                                            val2.propertyValueName)
-                                      ) {
-                                        if (
-                                          !$(val3)
-                                            .closest(".sku-property-item")
-                                            .hasClass("selected")
+                                            val2.propertyValueDisplayName ||
+                                          (val2.propertyValueDisplayName ==
+                                            undefined &&
+                                            $(val3).text() ==
+                                              val2.propertyValueName)
                                         ) {
-                                          $(val3).click();
+                                          if (
+                                            !$(val3)
+                                              .closest(".sku-property-item")
+                                              .hasClass("selected")
+                                          ) {
+                                            $(val3).click();
+                                          }
+                                        }
+                                        else if (
+                                          $(val3).attr('title') ==
+                                            val2.propertyValueDefinitionName ||
+                                          (val2.propertyValueDefinitionName ==
+                                            undefined)
+                                        ) {
+                                          if (
+                                            !$(val3)
+                                              .closest(".sku-property-item")
+                                              .hasClass("selected")
+                                          ) {
+                                            $(val3).click();
+                                          }
                                         }
                                       }
-                                      else if (
-                                        $(val3).attr('title') ==
-                                          val2.propertyValueDefinitionName ||
-                                        (val2.propertyValueDefinitionName ==
-                                          undefined)
-                                      ) {
-                                        if (
-                                          !$(val3)
-                                            .closest(".sku-property-item")
-                                            .hasClass("selected")
-                                        ) {
-                                          $(val3).click();
-                                        }
-                                      }
+                                    );
                                     }
-                                  );
                                 } else {
                                   // this block is for swatch as text like ship From
                                   $.each(
