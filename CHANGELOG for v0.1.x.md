@@ -1,8 +1,16 @@
-### 1. Introduction:
+# CHANGELOG for v0.1.x
 
-With the help of Bagisto AliExpress Dropship chrome extension, the admin can import and list products from the AliExpress to its Bagisto store. After receiving the orders, the admin just need to click a single button and then make the payment as we have automated the order process for the AliExpress orders.
+#### This changelog consists the bug & security fixes and new features being included in the releases listed below.
 
-It packs in lots of demanding features that allows your business to scale in no time:
+## **v1.2.0(3rd of November, 2020)** - _Release_
+
+- [Bug] Added .webp extension in image to search in aliexpress images
+
+## **v0.1.1(9th of July, 2019)** - _Release_
+
+- [Compatibility] Compatible with new aliexpress layout.
+
+## **v0.1.0(6th of March, 2019)** - _Release_
 
 - [feature] Import AliExpress products(simple and configurable) from AliExpress into your selected channel.
 - [feature] Create configurable product if the product has options otherwise, create a simple product.
@@ -15,16 +23,3 @@ It packs in lots of demanding features that allows your business to scale in no 
 - [feature] Description of the product also gets imported same as AliExpress.
 - [feature] The product information like base name, price, quantity, product reviews, meta title, meta keywords, meta description, SKU, description(simple tags, HTML tags, and multiple images), and configurable attributes get imported along with the product.
 - [feature] View all AliExpress Orders in a separate section.
-
-### 2. Requirements:
-
-- **Bagisto**: v0.1.5 or higher.
-
-### 3. Installation:
-
-- Unzip the respective extension zip.
-- Open "Extentions" menu under "Tools" from Chrome browser menu bar.
-- Enable "Developer Mode" option from right top corner.
-- Click on "Load Unpacked" button and upload unzipped folder.
-
-> That's it, now you can see Bagisto AliExpress icon on your browser.
