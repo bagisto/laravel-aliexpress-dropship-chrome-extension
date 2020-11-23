@@ -1793,7 +1793,7 @@ window.onload = function() {
                                     !$("body")
                                       .find(
                                         '.product-sku .sku-property-item [src="' +
-                                          val2.skuPropertyImageSummPath +
+                                          val2.skuPropertyImageSummPath + '_.webp' +
                                           '"]'
                                       )
                                       .closest(".sku-property-item")
@@ -1802,7 +1802,7 @@ window.onload = function() {
                                     $("body")
                                       .find(
                                         '.product-sku .sku-property-item [src="' +
-                                          val2.skuPropertyImageSummPath +
+                                          val2.skuPropertyImageSummPath + '_.webp' +
                                           '"]'
                                       )
                                       .click();
@@ -1811,31 +1811,66 @@ window.onload = function() {
                                   val1.isShowTypeColor == false &&
                                   val1.skuPropertyName.toLowerCase() == "color"
                                 ) {
-                                  // this block is for swatch text as Color
-                                  $.each(
-                                    $("body").find(
-                                      ".product-sku .sku-property-item .sku-property-text span"
-                                    ),
-                                    function(ind3, val3) {
-                                      console.log(val3, val2);
-                                      if (
-                                        $(val3).text() ==
-                                          val2.propertyValueDisplayName ||
-                                        (val2.propertyValueDisplayName ==
-                                          undefined &&
-                                          $(val3).text() ==
-                                            val2.propertyValueName)
-                                      ) {
+                                  if (val1.skuPropertyValues[ind2]['skuPropertyImageSummPath']) {
+                                       // this block is for swatch images
+                                  if (
+                                    !$("body")
+                                      .find(
+                                        '.product-sku .sku-property-item [src="' +
+                                          val2.skuPropertyImageSummPath + '_.webp' +
+                                          '"]'
+                                      )
+                                      .closest(".sku-property-item")
+                                      .hasClass("selected")
+                                  ) {
+                                    $("body")
+                                      .find(
+                                        '.product-sku .sku-property-item [src="' +
+                                          val2.skuPropertyImageSummPath + '_.webp' +
+                                          '"]'
+                                      )
+                                      .click();
+                                  }
+                                  } else {
+                                      // this block is for swatch text as Color
+                                    $.each(
+                                      $("body").find(
+                                        ".product-sku .sku-property-item .sku-property-text span"
+                                      ),
+                                      function(ind3, val3) {
                                         if (
-                                          !$(val3)
-                                            .closest(".sku-property-item")
-                                            .hasClass("selected")
+                                          $(val3).text() ==
+                                            val2.propertyValueDisplayName ||
+                                          (val2.propertyValueDisplayName ==
+                                            undefined &&
+                                            $(val3).text() ==
+                                              val2.propertyValueName)
                                         ) {
-                                          $(val3).click();
+                                          if (
+                                            !$(val3)
+                                              .closest(".sku-property-item")
+                                              .hasClass("selected")
+                                          ) {
+                                            $(val3).click();
+                                          }
+                                        }
+                                        else if (
+                                          $(val3).attr('title') ==
+                                            val2.propertyValueDefinitionName ||
+                                          (val2.propertyValueDefinitionName ==
+                                            undefined)
+                                        ) {
+                                          if (
+                                            !$(val3)
+                                              .closest(".sku-property-item")
+                                              .hasClass("selected")
+                                          ) {
+                                            $(val3).click();
+                                          }
                                         }
                                       }
+                                    );
                                     }
-                                  );
                                 } else {
                                   // this block is for swatch as text like ship From
                                   $.each(
@@ -2087,8 +2122,11 @@ window.onload = function() {
       if ($(".address-list-opt button").length) {
         $(".address-list-opt button")[0].click();
       }
+
+      var storeURL = localStorage.wk_url.replace(/.$/,"")
+
       $.ajax({
-        url: localStorage.wk_url + "/dropship/aliexpress/order-details",
+        url: storeURL + "/dropship/aliexpress/order-details",
         data: {
           order_id: localStorage.wk_order_id
         },
