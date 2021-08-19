@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<script type="text/javascript" src="/resources/js/jquery.min.js"></script>
+		<link href="/resources/css/bootstrap.min.css" rel="stylesheet" media="screen" />
+		<link href="/resources/css/popup.css" rel="stylesheet" media="screen" />
+	</head>
+	
+	<body>
+		<div class="container-fluid">
+			<div class="row" id="wk-popup-header">
+				<img class="wk-logo" src="../images/popup-icon.png" alt="Bagisto AliExpress Product Import">
+
+				<h3 id="wk-header-text">AliExpress Importer</h3>
+
+				<span class="close-icon">
+					<img id="wk-popup-close" src="../images/Icon-remove.svg"/>
+				</span>
+			</div>
+			<div class="row" id="wk-popup-body">
+				<div id="wk-option-box">
+					<div class="col-xs-2">
+						<input type="checkbox" name="epacket" value="">
+						<label class="wk-checkbox"></label>
+					</div>
+
+					<div class="col-xs-10">
+						<p>Enable ePacket Identifications</p>
+					</div>
+
+					<div class="col-xs-2">
+						<input type="checkbox" name="hide_product_noepacket" value="">
+						<label class="wk-checkbox"></label>
+					</div>
+
+					<div class="col-xs-10">
+						<p>Hide Products Without ePacket</p>
+					</div>
+				</div>
+
+				<div id="wk-order-empty">
+					<div class="text-center">
+						<img src="/resources/images/order-empty-image.png" alt="Order Empty">
+					</div>
+
+					<div class="text-center" id="wk-empty-text">There are no orders added to cart</div>
+				</div>
+
+				<div id="wk-order-table">
+					<div class="table-responsive">
+						<table class="table">
+							<thead>
+								<tr>
+								<th>Order Id</th>
+								<th>Customer Name</th>
+								<th>Status</th>
+								</tr>
+							</thead>
+
+							<tbody></tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+
+			<div class="row" id="wk-popup-footer">
+				<div class="text-center">
+				<a class="btn btn-primary" id="wk-clear-localstorage">Update Authentication Details</a>
+				</div>
+			</div>
+		</div>
+		
+		<script type="text/javascript" src="/resources/js/pop.js"></script>
+	</body>
+</html>
